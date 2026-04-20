@@ -1,0 +1,21 @@
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: sans-serif;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, button {
+  padding: 0.5rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Sueldo Neto 2026</title>
+  <link rel="stylesheet" href="HACIENDA.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Simulador de Sueldo Neto 2026</h1>
+
+    <label for="salarioBruto">Salario Bruto Anual (€)</label>
+    <input
+      type="number"
+      id="salarioBruto"
+      placeholder="Ej: 28000"
+      min="0"
+    >
+
+    <button id="btnCalcular">Calcular Retención</button>
+
+    <div id="resultado" class="hidden">
+      <p>Tu sueldo neto mensual es:
+        <span id="montoNeto">0</span>€
+      </p>
+      <p>Retención aplicada:
+        <span id="porcentaje">0</span>%
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
