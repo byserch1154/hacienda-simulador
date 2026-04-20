@@ -1,46 +1,24 @@
-// Paso 1: Seleccionar elementos del DOM con querySelector
-const btnCalcular = document.querySelector('#btnCalcular');
-const inputSalario = document.querySelector('#salarioBruto');
-const divResultado = document.querySelector('#resultado');
-const spanMonto = document.querySelector('#montoNeto');
-const spanPorcentaje = document.querySelector('#porcentaje');
+const boton = document.querySelector('#btnCalcular');
 
-// Paso 2: Escuchar el evento click en el botón
-btnCalcular.addEventListener('click', function () {
+boton.addEventListener('click', function() {
+  const salario = document.querySelector('#salarioBruto').value;
 
-  // Paso 3: Obtener y validar el valor del input
-  const salarioBruto = parseFloat(inputSalario.value);
-
-  if (isNaN(salarioBruto) || salarioBruto <= 0) {
-    alert('Por favor, introduce un salario bruto válido.');
-    return;
-  }
-
-  // Calcular el porcentaje de retención (lógica simplificada de IRPF)
   let retencion;
-  if (salarioBruto > 30000) {
-    retencion = 0.20; // 20% para salarios superiores a 30.000€
+  if (salario > 30000) {
+    retencion = 20;
   } else {
-    retencion = 0.15; // 15% para salarios hasta 30.000€
+    retencion = 15;
   }
 
-  // Calcular el neto anual y mensual
-  const netoAnual = salarioBruto * (1 - retencion);
-  const netoMensual = netoAnual / 12;
+  const neto = (salario * (1 - retencion / 100)) / 12;
 
-  // Paso 4: Manipular el DOM para mostrar el resultado
-  spanMonto.textContent = netoMensual.toFixed(2);
-  spanPorcentaje.textContent = (retencion * 100).toFixed(0);
+  document.querySelector('#montoNeto').textContent = neto.toFixed(2);
+  document.querySelector('#porcentaje').textContent = retencion;
+  document.querySelector('#resultado').classList.remove('hidden');
 
-  // Cambiar el color del texto según el monto neto mensual
-  if (netoMensual >= 2000) {
-    spanMonto.style.color = 'green';
-  } else if (netoMensual >= 1200) {
-    spanMonto.style.color = 'orange';
+  if (neto >= 2000) {
+    document.querySelector('#montoNeto').style.color = 'green';
   } else {
-    spanMonto.style.color = 'red';
+    document.querySelector('#montoNeto').style.color = 'red';
   }
-
-  // Mostrar el div resultado quitando la clase "hidden"
-  divResultado.classList.remove('hidden');
 });
